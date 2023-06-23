@@ -90,13 +90,12 @@ class App extends Component{
  
   render(){
     const settings = {
-      // dots: true,
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
-      speed: 1800,
-      autoplaySpeed: 2000,
+      speed: 3500,
+      autoplaySpeed: 0,
       cssEase: "linear"
     };
     return(
@@ -107,8 +106,8 @@ class App extends Component{
         { 
         ara.map((item)=>(
           <div>
-            <div className='space-y-4 mb-5 mt-5 px-2 border-[17px] hover:border-green-500 '>
-            <img src={item.img} alt='im' className=' w-full h-36 object-cover' />
+            <div className='space-y-4 mb-5 mt-5 px-2 border-[17px] hover:border-green-500 bg-white'>
+            <img src={item.img} alt='im' className=' w-full bg-white aspect-[3/2] object-contain' />
             </div>
           </div>
         ))
