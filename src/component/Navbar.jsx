@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 import { Link } from "react-scroll";
 export default function Navbar() {
   const [nav, setNave] = useState(false);
+
+  useEffect(() =>{
+    if(nav === false){
+      document.body.style.overflow = 'unset';
+    }else{
+      document.body.style.overflow = 'hidden';
+    }
+    
+  },[nav])
 
   const links = [
     {
@@ -40,12 +50,12 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className='flex z-50 fixed justify-between items-center w-full h-20 bg-black   text-white '>
-        <div>
+      <div className='flex z-[100] fixed justify-between items-center w-full h-20 bg-black   text-white '>
+        <div className="z-50">
           <img
             src='https://www.papermideast.com/uploads/configurationsite/source/29004.png'
             alt=''
-            className=' h-16 '
+            className='h-16 z-50'
           />
         </div>
         <ul className='hidden md:flex'>
@@ -63,27 +73,31 @@ export default function Navbar() {
         </ul>
         <div
           onClick={() => setNave(!nav)}
-          className='cursor-pointer pr-4 z-10 text-gray-500 md:hidden'>
+          className='cursor-pointer pr-4 z-50 text-gray-500 md:hidden'>
           {nav ? <FaTimes /> : <FaBars />}
         </div>
         {nav && (
-          <ul className='flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen z-30 bg-gradient-to-b from-black to-gray-800 text-white md:hidden'>
+          <div className="absolute top-20 left-0 w-full h-screen z-0 bg-gradient-to-b from-black to-gray-800 text-white md:hidden overflow-scroll">
+           <div className="relative">
+           <ul className="w-full">
             {links.map(({ link, id }) => {
-              return (
-                <li
-                  key={id}
-                  className='px-4 cursor-pointer capitalize py-3  text-4xl text-gray-500'>
-                  <Link
-                    onClick={() => setNave(!nav)}
-                    to={link}
-                    smooth
-                    duration={300}>
-                    {link}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+                return (
+                  <li
+                    key={id}
+                    className='px-4 cursor-pointer capitalize py-2 text-2xl text-gray-500'>
+                    <Link
+                      onClick={() => setNave(!nav)}
+                      to={link}
+                      smooth
+                      duration={300}>
+                      {link}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+           </div>
+          </div>
         )}
       </div>
     </div>
