@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
 import { Link } from "react-scroll";
 export default function Navbar() {
   const [nav, setNave] = useState(false);
